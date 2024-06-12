@@ -13,36 +13,79 @@ get_header();
     </div>
 </div>
 <main class="container-content section">
-    <h1 class="text-center text-color1">Some Posts</h1>
-<div class="swiper">
-    <ul class="grid-list swiper-wrapper">
-        <?php
-        // Creamos una nueva instancia de WP_Query
-        $args = array(
-            'post_type' => 'post', // Solo queremos entradas del blog
-            'posts_per_page' => -1, // Mostrar todas las entradas del blog
-            'order' => 'DESC', // Ordenar las entradas de más recientes a más antiguas
-        );
-        $query = new WP_Query($args);
+    <div>
+        <h1 class="text-center text-color1">Posts</h1>
+        <div class="swiper">
+            <ul class="grid-list swiper-wrapper">
+                <?php
+                // Query for blog posts
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => -1,
+                    'order' => 'DESC',
+                );
+                $topics = new WP_Query($args);
 
-        // Verificamos si hay entradas
-        if ($query->have_posts()) :
-            while ($query->have_posts()) : $query->the_post();
-                get_template_part('template-parts/topics-slide');
-            endwhile;
-            wp_reset_postdata(); // Restablecemos los datos de la consulta
-        else :
-            // Si no hay entradas disponibles
+                // Check if there are posts
+                if ($topics->have_posts()) :
+                    while ($topics->have_posts()) : $topics->the_post();
+                        get_template_part('template-parts/topics-slide');
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                ?>
+                    <li>Topics not found.</li>
+                <?php
+                endif;
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="pt-50 pb-20">
+            <h1 class="text-center text-color1">Moderators</h1>
+        </div>
+        <ul class="grid-list">
+            <?php
+            // Query for moderators
+            $args = array(
+                'post_type' => 'thetopic_moderators',
+                'posts_per_page' => -1,
+                'order' => 'DESC',
+            );
+            $moderators = new WP_Query($args);
+
+            // Check if there are moderators
+            if ($moderators->have_posts()) :
+                while ($moderators->have_posts()) : $moderators->the_post();
+                    get_template_part('template-parts/moderators_part');
+                endwhile;
+                wp_reset_postdata();
+            else :
             ?>
-            <li>No se encontraron entradas.</li>
-        <?php
-        endif;
-        ?>
-    </ul>
-</div>
+                <li>Moderators not found.</li>
+            <?php
+            endif;
+            ?>
+        </ul>
+    </div>
+    <div class="pt-50 pb-20">
+        <h1 class="text-center text-color1">Contact</h1>
+    </div>
+    <?php
+    // Query for moderators
+    $args = array(
+        'post_type' => 'thetopic_ubication',
+        'posts_per_page' => -1,
+        'order' => 'DESC',
+    );
+    $moderators = new WP_Query($args);
 
+    get_template_part('template-parts/contact_part');
+
+    ?>
+    </div>
 </main>
-
 <?php
 get_footer();
 ?>

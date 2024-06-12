@@ -1,16 +1,14 @@
-<?php
-
-while (have_posts()) : the_post();
-    the_title('<h1 class="text-center text-color1">', '</h1>');
-    if (has_post_thumbnail()) {
-        the_post_thumbnail('full', array('class' => 'image_about_us'));
-    }
-
-    if(is_single()) {
-    $joinedInDate = get_field('date'); ?>
-    <p class="info-moderator"><?php the_field('joined_in'); ?> - <?php echo $joinedInDate; ?></p>
-<?php
-    }
-    the_content();
-
-endwhile;
+<li class="card">
+    <?php the_post_thumbnail(); ?>
+    <div class="content">
+        <a href="<?php the_permalink(); ?>">
+            <h3><?php the_title(); ?></h3>
+        </a>
+        <?php
+        // Retrieve the custom field values
+        $joined_in = get_field('joined_in');
+        $date = get_field('date');
+        ?>
+        <p><?php echo $joined_in; ?> - <?php echo $date; ?></p>
+    </div>
+</li>

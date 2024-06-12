@@ -775,3 +775,11 @@ img {
   object-position: center; /* Centrar la imagen verticalmente y horizontalmente */
   display: block;
 }
+
+.pt-50{
+  padding-top: 5rem;
+}
+
+.pb-20{
+  padding-bottom: 2rem;
+}

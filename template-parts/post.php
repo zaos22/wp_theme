@@ -32,4 +32,10 @@ while (have_posts()) : the_post();
 <?php
     the_content();
 
+    // Añadir sección de comentarios
+    if (comments_open() || get_comments_number()) :
+        comments_template();
+    endif;
+
 endwhile;
+?>

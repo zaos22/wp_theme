@@ -151,6 +151,7 @@ img {
 
 .header {
   background-color: var(--header-color);
+  padding-bottom: 2rem;
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
 }
 
@@ -782,4 +783,124 @@ img {
 
 .pb-20{
   padding-bottom: 2rem;
+}
+
+/* styles.css */
+
+/* Estilos para la sección de comentarios */
+#comments {
+  margin-top: 30px;
+}
+
+.comments-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--header-color);
+}
+
+.comment-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comment {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: var(--first-color);
+}
+
+.comment-metadata {
+  font-size: 14px;
+}
+
+.comment-content {
+  margin-top: 10px;
+}
+
+.comment-reply-link {
+  font-size: 14px;
+  color: var(--first-color);
+  text-decoration: none;
+}
+
+.comment-reply-link:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para el formulario de comentarios */
+.comment-respond {
+  margin-top: 30px;
+}
+
+.comment-form {
+  margin-bottom: 30px;
+}
+
+.comment-reply-title{
+  color: var(--first-color);
+}
+
+#cancel-comment-reply-link{
+  color: var(--header-color);
+}
+
+.comment-form .logged-in-as{
+  display: none;
+}
+
+.comment-notes,
+.comment-form-comment label,
+.comment-form-author label,
+.comment-form-email label,
+.comment-form-url label {
+  font-size: 14px;
+  color: var(--header-color);
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.comment-form textarea {
+  height: 150px;
+}
+
+.comment-form input[type="submit"] {
+  background-color: var(--first-color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.comment-form input[type="submit"]:hover {
+  background-color: #ff8c53; /* Un tono más oscuro para el hover */
+}
+
+.comment-form-author,
+.comment-form-email,
+.comment-form-url {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-author input,
+.comment-form-email input,
+.comment-form-url input {
+  flex: 1;
 }

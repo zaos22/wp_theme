@@ -90,3 +90,37 @@ function thetopic_ubication_shortcode()
 }
 
 add_shortcode('thetopic_ubication', 'thetopic_ubication_shortcode');
+
+
+function custom_comment_template( $comment, $args, $depth ) {
+    $GLOBALS['comment'] = $comment; ?>
+    <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+        <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
+            <footer class="comment-meta">
+                <div class="comment-author vcard">
+                    <?php
+                    if ( 0 != $args['avatar_size'] ) {
+                        echo get_avatar( $comment, $args['avatar_size'] );
+                    }
+                    ?>
+                    <b class="fn"><?php echo get_comment_author_link(); ?></b> <?php esc_html_e( 'says:', 'textdomain' ); ?>
+                </div>
+                <div class="comment-metadata">
+                    <a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+                        <?php
+                        /* Translators: 1: date, 2: time */
+                        printf( esc_html__( '%1$s at %2$s', 'textdomain' ), get_comment_date(), get_comment_time() );
+                        ?>
+                    </a>
+                    <?php edit_comment_link( esc_html__( 'Edit', 'textdomain' ), '<span class="edit-link">', '</span>' ); ?>
+                </div>
+            </footer>
+            <div class="comment-content">
+                <?php comment_text(); ?>
+            </div>
+            <?php if ( '0' == $comment->comment_approved ) : ?>
+                <p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'textdomain' ); ?></p>
+            <?php endif; ?>
+        </article>
+    <?php
+}
